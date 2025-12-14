@@ -589,14 +589,24 @@ nav {
     padding: 1rem;
     border-radius: 8px;
     margin-top: 1rem;
-    display: none;
     text-align: center;
     font-weight: 600;
+
+    /* IMPORTANT PART */
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
 .success-message.show {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    max-height: 200px;
 }
+
+
 
 /* Contact Info */
 .contact-info {

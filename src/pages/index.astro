@@ -1,11 +1,233 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout
+  title="🔵🔱 SUSHVIN AI LABS 🔱🔵 AI + WhatsApp Automation for Mysuru Businesses"
+  description="Sushvin AI Labs - WhatsApp automation, AI business process automation, and web design for clinics, salons, and coaching centers in Mysuru. Done-for-you setup in 7 days."
+  keywords="WhatsApp automation Mysuru, AI business automation Karnataka, web design Mysuru, SME automation India"
+>
+  <Header />
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <h1>AI + WhatsApp Automation That Turns Chats Into Customers</h1>
+      <p>
+        Done-for-you setup in 7 days, plus a fast, SEO-ready website for clinics,
+        salons, and coaching centers in Mysuru
+      </p>
+      <div class="hero-cta">
+        <a
+          href="https://wa.me/916361319844?text=Hi%20Sushvin%20AI%20Labs"
+          class="btn btn-primary"
+        >
+          💬 Chat on WhatsApp
+        </a>
+        <a href="/contact" class="btn btn-secondary">
+          📅 Book a 15-min Demo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💬</div>
+          <h3>WhatsApp Automation</h3>
+          <p>
+            Auto-replies, lead capture, booking reminders, and payment links.
+            Turn every chat into a customer opportunity.
+          </p>
+          <ul>
+            <li>✓ 24/7 instant responses</li>
+            <li>✓ Automated bookings</li>
+            <li>✓ Payment collection</li>
+            <li>✓ Campaign broadcasts</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🤖</div>
+          <h3>AI Business Process Automation</h3>
+          <p>
+            Streamline invoicing, inventory, CRM, and reporting.
+            Save 10+ hours per week on manual tasks.
+          </p>
+          <ul>
+            <li>✓ Automated workflows</li>
+            <li>✓ Smart analytics</li>
+            <li>✓ Multi-platform sync</li>
+            <li>✓ Custom integrations</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🌐</div>
+          <h3>Fast Web Design</h3>
+          <p>
+            Beautiful, SEO-ready websites that load instantly and convert
+            visitors into customers.
+          </p>
+          <ul>
+            <li>✓ Mobile-first design</li>
+            <li>✓ SEO optimized</li>
+            <li>✓ 90+ speed score</li>
+            <li>✓ Lead form integration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple, Transparent Pricing</h2>
+
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Starter</h3>
+          <div class="price">₹4,999 / month</div>
+          <ul class="pricing-features">
+            <li>WhatsApp auto-replies</li>
+            <li>Lead capture</li>
+            <li>1-page website</li>
+            <li>Email support</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Start Trial</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <h3>Growth</h3>
+          <div class="price">₹9,999 / month</div>
+          <ul class="pricing-features">
+            <li>Booking & reminders</li>
+            <li>Payment links</li>
+            <li>3-5 page website</li>
+            <li>WhatsApp support</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Start Trial</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Pro</h3>
+          <div class="price">₹19,999 / month</div>
+          <ul class="pricing-features">
+            <li>CRM & pipeline</li>
+            <li>Advanced analytics</li>
+            <li>Multi-location site</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="/contact" class="btn btn-primary">Start Trial</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT (Web3Forms) -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Get Started Today</h2>
+
+      <form
+        class="contact-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+      >
+        <!-- Web3Forms API -->
+        <input
+          type="hidden"
+          name="access_key"
+          value="d4951da2-90f1-4065-951f-fba9667a4148"
+        />
+
+        <input
+          type="hidden"
+          name="subject"
+          value="New Lead from Homepage - Sushvin AI Labs"
+        />
+        <input
+          type="hidden"
+          name="from_name"
+          value="Sushvin AI Labs Website"
+        />
+
+        <!-- Spam protection -->
+        <input type="checkbox" name="botcheck" style="display:none" />
+
+        <div class="form-group">
+          <label>Name *</label>
+          <input type="text" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label>Phone *</label>
+          <input type="tel" name="phone" required />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" />
+        </div>
+
+        <div class="form-group">
+          <label>Business Type *</label>
+          <select name="business" required>
+            <option value="">Select business type</option>
+            <option value="clinic">Clinic / Healthcare</option>
+            <option value="salon">Salon / Spa</option>
+            <option value="coaching">Coaching Center</option>
+            <option value="retail">Retail Store</option>
+            <option value="restaurant">Restaurant / Cafe</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Interested In *</label>
+          <select name="service" required>
+            <option value="">Select a service</option>
+            <option value="whatsapp">WhatsApp Automation</option>
+            <option value="automation">Business Automation</option>
+            <option value="website">Web Design</option>
+            <option value="all">Complete Package</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea
+            name="message"
+            placeholder="Tell us about your needs..."
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;">
+          Submit Request
+        </button>
+        <div class="success-message" id="successMessage">
+            ✓ Thank you! We'll contact you within 24 hours.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- WHATSAPP FLOAT -->
+  <a
+    href="https://wa.me/916361319844?text=Hi%20Sushvin%20AI%20Labs"
+    class="whatsapp-float"
+    title="Chat on WhatsApp"
+  >
+    💬
+  </a>
+
+  <Footer />
+</BaseLayout>

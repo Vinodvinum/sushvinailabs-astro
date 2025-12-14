@@ -1,0 +1,162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout
+  title="Contact Us | Sushvin AI Labs"
+  description="Contact Sushvin AI Labs - Get in touch for WhatsApp automation, AI business automation, and web design services in Mysuru."
+  keywords="contact Sushvin AI Labs, automation consultation Mysuru"
+>
+  <Header />
+
+  <!-- HERO -->
+  <section class="hero-contact">
+    <div class="container">
+      <h1>Let's Transform Your Business Together</h1>
+      <p>Ready to automate and grow? We’ll respond within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact">
+    <div class="container">
+      <div class="contact-wrapper">
+
+        <!-- FORM -->
+        <div class="contact-form-wrapper">
+          <h2>Send Us a Message</h2>
+
+          <form
+            action="https://api.web3forms.com/submit"
+            method="POST"
+          >
+            <!-- Web3Forms API -->
+            <input
+              type="hidden"
+              name="access_key"
+              value="d4951da2-90f1-4065-951f-fba9667a4148"
+            />
+
+            <input
+              type="hidden"
+              name="subject"
+              value="New Contact Lead - Sushvin AI Labs"
+            />
+
+            <input
+              type="hidden"
+              name="from_name"
+              value="Sushvin AI Labs Website"
+            />
+
+            <!-- Spam protection -->
+            <input type="checkbox" name="botcheck" style="display:none" />
+
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" name="phone" required />
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" name="email" />
+            </div>
+
+            <div class="form-group">
+              <label>Business Type *</label>
+              <select name="business" required>
+                <option value="">Select business type</option>
+                <option>Clinic / Healthcare</option>
+                <option>Salon / Spa</option>
+                <option>Coaching Center</option>
+                <option>Retail Store</option>
+                <option>Restaurant / Cafe</option>
+                <option>Professional Services</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Service Interested In *</label>
+              <select name="service" required>
+                <option value="">Select service</option>
+                <option>WhatsApp Automation</option>
+                <option>Business Automation</option>
+                <option>Web Design</option>
+                <option>Complete Package</option>
+                <option>Free Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Tell Us About Your Needs</label>
+              <textarea
+                name="message"
+                placeholder="Describe your business requirements..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              Submit Request
+            </button>
+            <div class="success-message" id="successMessage">
+                ✓ Thank you! We'll contact you within 24 hours.
+            </div>
+          </form>
+        </div>
+
+        <!-- INFO -->
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-icon">📞</div>
+            <div class="info-content">
+              <h3>Call Us</h3>
+              <p><a href="tel:+916361319844">+91 6361319844</a></p>
+              <p>Mon–Sat: 9:00 AM – 7:00 PM</p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">📧</div>
+            <div class="info-content">
+              <h3>Email</h3>
+              <p>
+                <a href="mailto:info@sushvinailabs.in">
+                  info@sushvinailabs.in
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-icon">📍</div>
+            <div class="info-content">
+              <h3>Location</h3>
+              <p>Mysuru, Karnataka, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WHATSAPP CTA -->
+      <div class="whatsapp-cta">
+        <h3>💬 Prefer WhatsApp?</h3>
+        <a
+          href="https://wa.me/916361319844?text=Hi, I want to learn more about Sushvin AI Labs services"
+          class="btn-whatsapp"
+        >
+          💬 Start WhatsApp Chat
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>

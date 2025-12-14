@@ -1,0 +1,35 @@
+---
+const { title, description, keywords } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+
+  <title>{title}</title>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css" />
+</head>
+<body>
+  <slot />
+
+  <!-- FORM SUCCESS MODAL (GLOBAL) -->
+  <div id="formModal" class="form-modal hidden">
+    <div class="form-modal-content">
+      <button class="form-modal-close" aria-label="Close">×</button>
+      <h3>✅ Thank You!</h3>
+      <p>Your request has been submitted successfully.</p>
+      <p>We’ll contact you within <b>24 hours</b>.</p>
+    </div>
+  </div>
+
+  <!-- Global JS -->
+  <script src="/assets/js/script.js" is:inline></script>
+  <script src="/assets/js/form.js" is:inline></script>
+</body>
+</html>

@@ -61,11 +61,8 @@ function setupMobileMenu() {
     });
 }
 
-// Contact Form Handler
-
-
+// Run setup functions after the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Menu Setup
     setupMobileMenu();
 
     // Smooth scroll for anchor links
@@ -78,8 +75,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // Run setup functions after the DOM is fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        setupMobileMenu();
-    });});
+});

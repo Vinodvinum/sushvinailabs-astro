@@ -1,0 +1,82 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<BaseLayout 
+  title={entry.data.title} 
+  description={entry.data.description}
+  keywords={entry.data.keywords ? entry.data.keywords.join(', ') : ''}
+>
+  <Header />
+  <main>
+    <article class="container">
+      <h1>{entry.data.title}</h1>
+      {entry.data.pubDate && <p class="article-meta">Published on: {new Date(entry.data.pubDate).toLocaleDateString()}</p>}
+      <div class="prose">
+        <Content />
+      </div>
+      <a href="/blog" class="back-link" style="display:inline-block; margin-top: 2rem;">&larr; Back to Blog</a>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  article {
+    padding: 3rem 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  article h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    color: var(--color-primary);
+  }
+  .article-meta {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .prose {
+    line-height: 1.8;
+  }
+  .prose :global(h2) {
+    font-size: 1.75rem;
+    margin: 2.5rem 0 1rem;
+    color: var(--color-primary);
+  }
+  .prose :global(h3) {
+    font-size: 1.35rem;
+    margin: 2rem 0 0.75rem;
+  }
+  .prose :global(p) {
+    margin-bottom: 1.25rem;
+  }
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 1rem 0 1.5rem 1.5rem;
+    padding-left: 1rem;
+  }
+  .prose :global(li) {
+    margin-bottom: 0.75rem;
+  }
+  .prose :global(a) {
+    color: var(--color-primary);
+  }
+</style>

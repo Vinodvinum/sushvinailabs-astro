@@ -78,4 +78,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-});
+    
+    // Run setup functions after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        setupMobileMenu();
+    });});

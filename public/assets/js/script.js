@@ -1,10 +1,11 @@
-// --- MOBILE MENU ---
+// Mobile Menu Setup (improved: aria, keyboard, safe guards)
 function setupMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     if (!menuToggle || !navLinks) return;
 
+    // ensure ARIA present
     menuToggle.setAttribute('aria-expanded', 'false');
     menuToggle.setAttribute('aria-label', menuToggle.getAttribute('aria-label') || 'Toggle menu');
 
@@ -12,6 +13,7 @@ function setupMobileMenu() {
         navLinks.classList.add('active');
         menuToggle.classList.add('active');
         menuToggle.setAttribute('aria-expanded', 'true');
+        // prevent body scroll when menu open (optional)
         document.body.style.overflow = 'hidden';
     }
 
@@ -22,12 +24,13 @@ function setupMobileMenu() {
         document.body.style.overflow = '';
     }
 
-    menuToggle.addEventListener('click', (e) => {
+    menuToggle.addEventListener('click', function(e) {
         e.stopPropagation();
         navLinks.classList.contains('active') ? closeMenu() : openMenu();
     });
 
-    menuToggle.addEventListener('keydown', (e) => {
+    // keyboard support (Enter / Space)
+    menuToggle.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             menuToggle.click();
@@ -36,88 +39,76 @@ function setupMobileMenu() {
         }
     });
 
+    // Close menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => closeMenu());
+        link.addEventListener('click', function() {
+            closeMenu();
+        });
     });
 
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('nav')) return;
-        if (navLinks.classList.contains('active')) {
-             closeMenu();
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav')) {
+            closeMenu();
         }
     });
 
-    window.addEventListener('resize', () => {
+    // Close on resize to desktop
+    window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
             closeMenu();
         }
     });
 }
 
-// --- FORM HANDLER (for Web3Forms) ---
-function setupContactForm() {
-    const form = document.querySelector('form[action*="web3forms"]');
-    if (!form) return;
-
-    const successMessage = form.querySelector(".success-message");
+// Contact Form Handler
+document.addEventListener('DOMContentLoaded', function() {
+    setupMobileMenu();
     
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        if (successMessage) successMessage.classList.remove("show");
-
-        try {
-            const response = await fetch(form.action, {
-                method: "POST",
-                body: new FormData(form),
-            });
-
-            if (!response.ok) {
-                throw new Error(`Server responded with status: ${response.status}`);
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value || 'Not provided',
+                business: document.getElementById('business')?.value || 'Not specified',
+                service: document.getElementById('service')?.value || 'Not specified',
+                message: document.getElementById('message')?.value || 'No message',
+                timestamp: new Date().toISOString(),
+                page: window.location.pathname
+            };
+            
+            console.log('Form submission:', formData);
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                successMessage.classList.add('show');
             }
             
-            const result = await response.json();
-
-            if (result.success) {
-                form.reset();
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
                 if (successMessage) {
-                    successMessage.classList.add("show");
-                    setTimeout(() => {
-                        successMessage.classList.remove("show");
-                    }, 5000);
+                    successMessage.classList.remove('show');
                 }
-            } else {
-                 throw new Error(result.message || "Submission failed.");
-            }
+            }, 5000);
+        });
+    }
+});
 
-        } catch (err) {
-            console.error("Form submission error:", err);
-            alert("❌ Something went wrong. Please try again.");
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
-}
-
-// --- SMOOTH SCROLL ---
-function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            try {
-                const target = document.querySelector(targetId);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            } catch(err) {
-                console.error("Smooth scroll failed for selector:", targetId);
-            }
-        });
-    });
-}
-
-// --- INITIALIZE ALL SCRIPTS ---
-document.addEventListener('DOMContentLoaded', () => {
-    setupMobileMenu();
-    setupContactForm();
-    setupSmoothScroll();
 });

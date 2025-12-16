@@ -21,8 +21,56 @@ const { title, description, keywords } = Astro.props;
   
 
   <!-- Global JS for Mobile Menu -->
-  <script is:inline src="/assets/js/main.js"></script>
-    
+  <script>
+    function setupMobileMenu() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+
+      if (!menuToggle || !navLinks) return;
+
+      menuToggle.setAttribute('aria-expanded', 'false');
+
+      function openMenu() {
+        navLinks.classList.add('active');
+        menuToggle.classList.add('active');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenu() {
+        navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
+
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navLinks.classList.contains('active') ? closeMenu() : openMenu();
+      });
+
+      // Close menu on link click
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+          if (navLinks.classList.contains('active')) {
+            closeMenu();
+          }
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav') && navLinks.classList.contains('active')) {
+          closeMenu();
+        }
+      });
+    }
+
+    // Run the setup after the DOM is loaded
+    document.addEventListener('DOMContentLoaded', setupMobileMenu);
+    // Also run on Astro's page-load event for smoother navigation
+    document.addEventListener('astro:after-swap', setupMobileMenu);
+  </script>
   
   
 </body>
